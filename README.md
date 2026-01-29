@@ -1,2 +1,2 @@
 # AperceBack
-No usé PUT /tasks/{id}/status porque exponer el estado directamente convierte una regla de negocio en un dato modificable. En cambio, usé endpoints por intención (start, complete) que representan acciones del dominio. Esto hace que la API sea más explícita, evita transiciones inválidas y mantiene el control en el aggregate
+El estado de una tarea no es un campo editable, es una consecuencia de ejecutar una acción del dominio. Si expongo PUT /status, estoy permitiendo que el cliente intente cualquier transición y luego validarla. Con endpoints por intención, la API expresa el lenguaje del dominio, elimina estados inválidos desde el contrato y mantiene la consistencia dentro del aggregate.
