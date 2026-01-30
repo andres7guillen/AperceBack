@@ -1,0 +1,45 @@
+
+IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'AperceDB')
+BEGIN
+    CREATE DATABASE AperceDB;
+END
+GO
+
+USE AperceDB;
+GO
+
+
+CREATE TABLE Users
+(
+    Id UNIQUEIDENTIFIER NOT NULL,
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(150) NOT NULL,
+
+    CONSTRAINT PK_Users PRIMARY KEY (Id),
+    CONSTRAINT UQ_Users_Email UNIQUE (Email)
+);
+GO
+
+
+CREATE TABLE Tasks
+(
+    Id UNIQUEIDENTIFIER NOT NULL,
+    Title NVARCHAR(200) NOT NULL,
+    Status INT NOT NULL,
+    UserId UNIQUEIDENTIFIER NOT NULL,
+
+    CONSTRAINT PK_Tasks PRIMARY KEY (Id),
+
+    CONSTRAINT FK_Tasks_Users
+        FOREIGN KEY (UserId)
+        REFERENCES Users(Id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT CK_Tasks_Status
+        CHECK (Status IN (0, 1, 2))
+);
+GO
+
+CREATE INDEX IX_Tasks_UserId
+    ON Tasks (UserId);
+GO
