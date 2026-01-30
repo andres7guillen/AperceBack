@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ManagementTaskAPI/ManagementTaskAPI.csproj" />
+  <Project Path="ManagementTaskApplication/ManagementTaskApplication.csproj" />
+  <Project Path="ManagementTaskData/ManagementTaskData.csproj" />
+  <Project Path="ManagementTaskDomain/ManagementTaskDomain.csproj" />
+  <Project Path="ManagementTaskInfrastructure/ManagementTaskInfrastructure.csproj" />
+</Solution>
